@@ -1,0 +1,7 @@
+{
+  "name": "@ecotrace/foundation",
+  "version": "1.0.0",
+  "description": "Core Carbon Calculation Engine and E-Commerce Adapters shared across implementations",
+  "type": "module",
+  "main": "./index.ts"
+}

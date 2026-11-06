@@ -1,0 +1,35 @@
+{
+  "$schema": "https://kiro.dev/schemas/hook-v1.json",
+  "name": "post-order-carbon-audit",
+  "eventType": "order.created",
+  "platforms": ["shopify", "woocommerce", "custom"],
+  "pipeline": [
+    {
+      "step": "normalize_payload",
+      "adapter": "auto_detect",
+      "target": "UnifiedOrder"
+    },
+    {
+      "step": "compute_spatial_distance",
+      "engine": "haversine_with_detour",
+      "origin": "store_warehouse"
+    },
+    {
+      "step": "calculate_glec_emissions",
+      "formula": "E = distance * (weight / 1000) * factor",
+      "precision": 3
+    },
+    {
+      "step": "evaluate_greener_alternatives",
+      "strategies": ["ground_consolidation", "last_mile_ev", "carbon_offset"]
+    },
+    {
+      "step": "append_to_carbon_ledger",
+      "destination": ".ecotrace/ledger.json"
+    }
+  ],
+  "notification": {
+    "terminal": true,
+    "format": "ansi_badge"
+  }
+}

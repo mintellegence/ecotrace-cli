@@ -1,0 +1,17 @@
+{
+  "name": "@ecotrace/cli",
+  "version": "1.0.0",
+  "description": "EcoTrace-CLI Application Implementation 1: Standalone terminal tool for shipping carbon emissions auditing",
+  "type": "module",
+  "bin": {
+    "ecotrace": "./bin/ecotrace.js"
+  },
+  "scripts": {
+    "start": "tsx bin/ecotrace.ts",
+    "audit": "tsx bin/ecotrace.ts audit",
+    "calc": "tsx bin/ecotrace.ts calculate"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}

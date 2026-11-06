@@ -1,0 +1,12 @@
+{
+  "name": "@ecotrace/service",
+  "version": "1.0.0",
+  "description": "EcoTrace-CLI Application Implementation 2: E-Commerce Webhook Receiver and Real-Time Logistics Daemon",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
