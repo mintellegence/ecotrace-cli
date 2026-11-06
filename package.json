@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && esbuild server.ts --bundle --platform=node --format=esm --packages=external --outfile=server.js",
-    "start": "node server.js",
+    "build": "vite build",
+    "start": "tsx server.ts",
     "cli": "tsx apps/ecotrace-cli/bin/ecotrace.ts",
     "service": "tsx apps/ecotrace-service/src/server.ts",
     "clean": "rm -rf dist server.js",
@@ -22,7 +22,6 @@
     "@vitejs/plugin-react": "^6.1.1",
     "commander": "^15.0.0",
     "dotenv": "^17.2.3",
-    "esbuild": "^0.25.0",
     "express": "^4.21.2",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
