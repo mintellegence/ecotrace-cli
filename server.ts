@@ -259,8 +259,8 @@ app.post('/api/git/push', (req: Request, res: Response) => {
     }
     execSync(`git remote add origin ${targetPushUrl}`, { stdio: 'pipe' });
 
-    // 5. Push to user's remote repository
-    const pushOutput = execSync(`git push -u origin ${branch}`, {
+    // 5. Push to user's remote repository (using --force to replace any initial repo placeholder on GitHub)
+    const pushOutput = execSync(`git push -u origin ${branch} --force`, {
       encoding: 'utf-8',
       stdio: ['pipe', 'pipe', 'pipe'],
     });

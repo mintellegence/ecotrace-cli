@@ -71,7 +71,7 @@ export const GitSyncModal: React.FC<GitSyncModalProps> = ({ isOpen, onClose }) =
     }
   };
 
-  const manualCommand = `git remote add origin ${repoUrl || 'https://github.com/sm-sharif-hussain/ecotrace-cli.git'}\ngit push -u origin main`;
+  const manualCommand = `git remote add origin ${repoUrl || 'https://github.com/mintellegence/ecotrace-cli.git'}\ngit push -u origin main --force`;
 
   const copyManualCmd = () => {
     navigator.clipboard.writeText(manualCommand);
