@@ -1,7 +1,9 @@
 {
   "name": "@ecotrace/foundation",
-  "version": "1.0.0",
-  "description": "Core Carbon Calculation Engine and E-Commerce Adapters shared across implementations",
+  "private": true,
+  "version": "1.1.0",
+  "description": "The shared skeleton: emission engine, e-commerce adapters, importers and validation. No app code.",
+  "license": "Apache-2.0",
   "type": "module",
   "main": "./index.ts"
 }

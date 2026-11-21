@@ -1,5 +1,8 @@
-# Render Blueprint Specification for EcoTrace-CLI
+# Render Blueprint for the public EcoTrace demo
 # Docs: https://render.com/docs/blueprint-spec
+#
+# NOTE: the free plan sleeps after ~15 minutes idle. The first request afterwards
+# shows Render's "service waking up" page for 30-60 s while the container starts.
 
 services:
   - type: web
@@ -7,12 +10,20 @@ services:
     runtime: node
     plan: free
     region: oregon
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3000
-    healthCheckPath: /api/audit/summary
-    autoDeploy: true
+      - key: NODE_VERSION
+        value: "22"
+      # Public demo: seeded sample data, no login, resettable. Nothing is persisted.
+      - key: ECOTRACE_DEMO_MODE
+        value: "true"
+      # Real store webhooks stay disabled (503) until these are set in the Render dashboard.
+      - key: SHOPIFY_WEBHOOK_SECRET
+        sync: false
+      - key: WOOCOMMERCE_WEBHOOK_SECRET
+        sync: false

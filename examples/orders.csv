@@ -1,0 +1,16 @@
+order_id,date,destination_city,destination_state,destination_country,weight_kg,carrier
+1001,2026-11-02,Los Angeles,CA,US,8.5,UPS Next Day Air
+1002,2026-11-02,Chicago,IL,US,2.1,FedEx Ground
+1003,2026-11-02,Atlanta,GA,US,1.2,USPS Ground Advantage
+1004,2026-11-03,New York,NY,US,4.8,FedEx 2Day Air
+1005,2026-11-03,Dallas,TX,US,12.0,UPS Ground
+1006,2026-11-03,Seattle,WA,US,0.9,USPS Priority Mail Express
+1007,2026-11-04,Louisville,KY,US,3.3,Local Courier
+1008,2026-11-04,Denver,CO,US,6.4,FedEx Ground
+1009,2026-11-04,Miami,FL,US,2.7,DHL Express Air
+1010,2026-11-05,Memphis,TN,US,1.5,Electric Van Same Day
+1011,2026-11-05,Toronto,,CA,3.9,UPS Worldwide Express
+1012,2026-11-05,London,,GB,2.2,DHL Express Air
+1013,2026-11-06,Austin,TX,US,5.1,FedEx Ground
+1014,2026-11-06,San Francisco,CA,US,1.8,UPS Next Day Air Saver
+1015,2026-11-06,Springfield,MO,US,2.4,USPS Ground Advantage

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Security review of server changes",
+      "trigger": "PostFileSave",
+      "description": "After server edits, makes the agent review the change against the security steering rules and add missing tests.",
+      "matcher": "apps[\\\\/]ecotrace-web[\\\\/]server",
+      "action": {
+        "type": "agent",
+        "prompt": "A file under apps/ecotrace-web/server was just changed. Check the change against .kiro/steering/security.md: every new or changed endpoint must be authenticated or explicitly public and stateless, validate its input, cap sizes, never use child_process/eval, never leak stack traces, and must have a matching test in tests/server.security.test.ts. If anything is missing, fix it and add the test before continuing."
+      }
+    }
+  ]
+}
