@@ -1,0 +1,11 @@
+{
+  "name": "@ecotrace/web",
+  "private": true,
+  "version": "1.1.0",
+  "description": "App 2: signed webhook receiver and live carbon dashboard. Built on /foundation.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx server.ts"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run tests when engine code changes",
+      "trigger": "PostFileSave",
+      "description": "Runs the unit and property-based tests whenever the agent edits the shared foundation or the tests, so regressions show up in the same turn.",
+      "matcher": "(foundation|tests)[\\\\/].*\\.ts$",
+      "action": {
+        "type": "command",
+        "command": "npx vitest run --reporter=dot",
+        "timeout": 120
+      }
+    }
+  ]
+}
