@@ -244,7 +244,9 @@ export async function verifyDeployment(baseUrl: URL, log: (line: string) => void
 
     await run(`${label}: rejects wrong signature`, async () => {
       const r = await http(url, { method: 'POST', headers: webhookHeaders(platform, body, 'not-the-secret'), body }, { quiet: true });
-      return [r.status === 401 || r.status === 503 ? 'PASS' : 'FAIL', `HTTP ${r.status}${r.status === 401 ? '' : ' (expected 401)'}`];
+      if (r.status === 401) return ['PASS', 'HTTP 401'];
+      if (r.status === 503) return ['PASS', 'HTTP 503 (webhooks not configured on server)'];
+      return ['FAIL', `HTTP ${r.status} (expected 401)`];
     });
 
     const secret = secretFor(platform);
