@@ -101,7 +101,7 @@ export const WebhookWorkbench: React.FC<WebhookWorkbenchProps> = ({ onWebhookDis
             E-Commerce Webhook Receiver & Schema Normalizer
           </h2>
           <p className="text-xs text-zinc-400 mt-0.5">
-            Ingests heterogeneous payloads from Shopify & WooCommerce, standardizes line items/weights, and triggers GLEC calculations.
+            Ingests heterogeneous payloads from Shopify & WooCommerce, standardizes line items and weights, and calculates emissions.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export const WebhookWorkbench: React.FC<WebhookWorkbenchProps> = ({ onWebhookDis
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-mono font-semibold text-zinc-200">
-                Normalized UnifiedOrder & GLEC Audit Result
+                Normalized order & emission result
               </span>
             </div>
             {responseAudit && (
@@ -267,7 +267,7 @@ export const WebhookWorkbench: React.FC<WebhookWorkbenchProps> = ({ onWebhookDis
                 <div className="p-3.5 rounded-lg bg-[#121917] border border-zinc-800 space-y-2.5">
                   <span className="text-zinc-400 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
                     <Zap className="w-3.5 h-3.5 text-amber-400" />
-                    GLEC Carbon Formula: E = d * w * f
+                    Formula: E = d * w * f
                   </span>
 
                   <div className="p-2.5 rounded bg-[#0a0d0c] border border-zinc-800/80 text-[11px] text-zinc-300 font-mono">
@@ -298,7 +298,7 @@ export const WebhookWorkbench: React.FC<WebhookWorkbenchProps> = ({ onWebhookDis
                 {responseAudit.alternatives.length > 0 && (
                   <div className="p-3.5 rounded-lg bg-emerald-950/20 border border-emerald-500/20 space-y-2">
                     <span className="text-emerald-400 font-bold text-[11px] uppercase tracking-wide">
-                      💡 Kiro Autonomous Routing Advice:
+                      💡 Lower-carbon alternatives:
                     </span>
                     {responseAudit.alternatives.slice(0, 2).map((alt, i) => (
                       <div key={i} className="p-2 rounded bg-[#0d1312] border border-zinc-800 text-[11px] space-y-1">

@@ -148,7 +148,7 @@ export const EcoTraceLogo: React.FC<EcoTraceLogoProps> = ({
               EcoTrace<span className="text-emerald-400">-CLI</span>
             </span>
             <span className="px-1.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded">
-              v1.0.0
+              v1.1.0
             </span>
           </div>
           <span className="text-[11px] text-zinc-400 font-mono tracking-wide">

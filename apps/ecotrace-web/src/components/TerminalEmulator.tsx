@@ -154,7 +154,7 @@ Try clicking one of the quick test chips above or type a command!`,
             <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block border border-emerald-600/40"></span>
           </div>
           <Terminal className="w-4 h-4 text-emerald-400" />
-          <span className="text-xs font-semibold text-zinc-300">ecotrace-cli • zsh (interactive node runtime)</span>
+          <span className="text-xs font-semibold text-zinc-300">ecotrace • browser sandbox (same commands as the real CLI)</span>
         </div>
 
         <div className="flex items-center gap-2">
