@@ -27,9 +27,10 @@ ECOTRACE_ORIGIN_LNG=-89.9767
 
 **Option 1: Admin API (JSON, includes weights).**
 
-1. Shopify admin → *Settings → Apps and sales channels → Develop apps → Create an app*.
-2. *Configure Admin API scopes* → enable `read_orders` only → *Install app* → copy the Admin API access token.
-3. Download orders (PowerShell shown; use `curl -H` the same way on macOS/Linux):
+Since January 1, 2026 Shopify no longer lets you create custom apps from *Settings → Apps → Develop apps*; new apps are created in the Shopify **Dev Dashboard**, which gives a client ID and secret that you exchange for an access token ([Shopify docs](https://shopify.dev/docs/apps/build/authentication-authorization/legacy/admin-custom-apps)). If you already have a legacy custom app with `read_orders`, its token still works.
+
+1. Get an Admin API access token with the `read_orders` scope (legacy custom app, or a Dev Dashboard app).
+2. Download orders (PowerShell shown; use `curl -H` the same way on macOS/Linux):
 
    ```powershell
    $env:SHOPIFY_TOKEN = "<paste token>"     # keep it out of files and shell scripts
@@ -38,11 +39,13 @@ ECOTRACE_ORIGIN_LNG=-89.9767
      ConvertTo-Json -Depth 20 | Out-File orders.json -Encoding utf8
    ```
 
-4. Audit:
+3. Audit:
 
    ```bash
    npm run cli -- audit orders.json
    ```
+
+If getting a token is too much hassle, use the live webhook path (section B). It needs no token or app at all.
 
 **Option 2: Admin CSV export.** *Orders → Export*. The Shopify CSV has no per-order weight column, so add a `weight_kg` column (or use option 1), then rename the shipping city/country columns to `city` / `country`. See [examples/README.md](../examples/README.md) for accepted headers.
 
@@ -106,8 +109,10 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 1. *Settings → Notifications → Webhooks → Create webhook*.
 2. Event **Order creation**, format **JSON**, URL `https://<your-app>/api/webhooks/shopify`.
-3. Copy the signing secret shown on that page ("Your webhooks will be signed with …") into `SHOPIFY_WEBHOOK_SECRET` on the server and redeploy.
+3. Copy the signing secret shown on that page ("Your webhooks will be signed with …") into `SHOPIFY_WEBHOOK_SECRET` on the server and redeploy. Shopify generates this secret, and the same one signs every admin-created webhook on the store, so you cannot pick your own value.
 4. Click **Send test notification**. The dashboard's *Carbon Ledger* updates within 5 seconds.
+
+Shopify gives a webhook about 5 seconds to answer, and it deletes subscriptions that keep failing. A sleeping Render free instance takes longer than that to wake, so open the site first. Shopify retries failed deliveries, so one cold-start miss is recovered automatically.
 
 ### 3. Connect WooCommerce
 

@@ -160,7 +160,7 @@ export const CarbonDashboard: React.FC<CarbonDashboardProps> = ({
             <span className="text-xs text-zinc-400 font-mono">kg CO2e</span>
           </div>
           <p className="mt-1 text-[11px] text-zinc-500">
-            Via ground consolidation & EV routing
+            If each order used its best realistic alternative
           </p>
         </div>
 
@@ -468,7 +468,7 @@ export const CarbonDashboard: React.FC<CarbonDashboardProps> = ({
         </div>
       )}
 
-      {/* GLEC Standard Factor Reference Table */}
+      {/* Emission factor reference table */}
       <div className="p-4 rounded-xl bg-[#0f1413] border border-zinc-800">
         <h4 className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center gap-2">
           <Info className="w-4 h-4 text-emerald-400" />
