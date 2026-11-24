@@ -104,6 +104,13 @@ describe('greener alternatives', () => {
     );
   });
 
+  it('R2.1 air-to-rail advice is phrased as a choice a merchant can make (no logistics jargon)', () => {
+    const current = CarbonCalculator.calculateRaw(2832, 8.5, 'air_freight').emissionKgCO2;
+    const rail = CarbonCalculator.computeAlternatives(2832, 8.5, 'air_freight', current, true).find((a) => a.mode === 'rail');
+    expect(rail?.recommendation).toMatch(/^Offer ground shipping instead of air/);
+    expect(rail?.recommendation).not.toMatch(/line-haul/);
+  });
+
   it('R2.3 alternatives are sorted by savings, largest first', () => {
     fc.assert(
       fc.property(distance, weight, mode, (d, w, m) => {

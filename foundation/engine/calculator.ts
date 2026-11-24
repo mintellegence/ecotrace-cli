@@ -186,7 +186,10 @@ export class CarbonCalculator {
         if (currentMode === 'air_freight' && altMode === 'road_truck') {
           recommendation = `Offer a ground service (typically 2-5 days) instead of air: cuts ${saved.toFixed(2)} kg CO2e (${percent}%).`;
         } else if (altMode === 'rail') {
-          recommendation = `Use a ground service that moves line-haul by rail (intermodal): cuts ${saved.toFixed(2)} kg CO2e (${percent}%).`;
+          recommendation =
+            currentMode === 'air_freight'
+              ? `Offer ground shipping instead of air (long-distance ground parcels often travel by rail): cuts ${saved.toFixed(2)} kg CO2e (${percent}%).`
+              : `Choose a ground service that uses rail for the long haul (intermodal): cuts ${saved.toFixed(2)} kg CO2e (${percent}%).`;
         } else if (altMode === 'electric_van') {
           recommendation = `Regional EV delivery is viable at this distance: cuts ${saved.toFixed(2)} kg CO2e (${percent}%).`;
         } else if (altMode === 'sea_freight') {
