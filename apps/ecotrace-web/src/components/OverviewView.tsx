@@ -1,7 +1,17 @@
 import React from 'react';
 import { ArrowRight, BarChart3, Bot, Layers, Leaf, PlugZap, Terminal, TrendingDown, TriangleAlert } from 'lucide-react';
-import { DEFAULT_EMISSION_FACTORS } from '../../../../foundation/engine/emissionFactors.ts';
-import { AuditReportSummary } from '../../../../foundation/types/index.ts';
+import { AuditReportSummary, TransportMode } from '../../../../foundation/types/index.ts';
+
+/** Plain-language mode names for sentences ("went by air freight"). */
+const MODE_LABEL: Record<TransportMode, string> = {
+  air_freight: 'air freight',
+  road_truck: 'ground (truck)',
+  regional_van: 'a regional delivery van',
+  electric_van: 'an electric van',
+  rail: 'rail',
+  sea_freight: 'ocean freight',
+  cargo_bike: 'cargo bike',
+};
 
 type Target = 'dashboard' | 'webhook' | 'terminal' | 'kiro';
 
@@ -87,7 +97,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({ summary, demoMode, o
           </div>
           <p className="mt-2 text-sm text-zinc-200">
             Order <strong className="text-white">{top.orderId}</strong> ({top.origin.city} → {top.destination.city}) went by{' '}
-            {DEFAULT_EMISSION_FACTORS[top.breakdown.carrierMode].name.toLowerCase()} and produced{' '}
+            {MODE_LABEL[top.breakdown.carrierMode]} and produced{' '}
             <strong className="text-white">{top.breakdown.emissionKgCO2.toFixed(2)} kg CO2e</strong> (grade {top.auditRating}).
           </p>
           {topAlt && <p className="mt-1 text-sm text-emerald-300">{topAlt.recommendation}</p>}

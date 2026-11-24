@@ -127,7 +127,7 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#121816] border border-emerald-500/20 text-[11px] font-mono">
+            <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#121816] border border-emerald-500/20 text-[11px] font-mono whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
               <span className="text-zinc-400">Ledger:</span>
               <span className="text-emerald-300 font-bold">
