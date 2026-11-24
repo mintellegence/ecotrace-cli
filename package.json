@@ -27,7 +27,7 @@
   "dependencies": {
     "commander": "15.1.0",
     "express": "4.22.3",
-    "lucide-react": "0.546.0",
+    "lucide-react": "0.577.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tsx": "4.23.15"
