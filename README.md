@@ -5,7 +5,21 @@ Shipping carbon auditor for e-commerce stores. It turns Shopify and WooCommerce 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-green.svg)](./LICENSE)
 [![Kiroween 2026: Skeleton Crew](https://img.shields.io/badge/Kiroween_2026-Skeleton_Crew-black.svg)](https://kiroween.devpost.com/)
 
-**Live demo:** https://ecotrace-cli.onrender.com
+**Live demo:** https://ecotrace-cli.onrender.com · [CI](https://github.com/mintellegence/ecotrace-cli/actions) · [How Kiro was used](./docs/KIRO_WRITEUP.md)
+
+<!-- Screenshot: save a capture of the Overview tab as docs/screenshot.png, then uncomment the next line.
+![EcoTrace Overview: footprint, avoidable emissions and the order to change first](./docs/screenshot.png)
+-->
+
+### Try it in 60 seconds
+
+| You are… | Do this |
+|---|---|
+| **Just looking** | Open the [live demo](https://ecotrace-cli.onrender.com). The **Overview** shows the footprint, how much is avoidable and the order to change first. Click any order in **Carbon Ledger** for its formula and realistic alternatives. |
+| **A store owner** | `git clone … && npm install && npm run cli -- audit your-orders.csv`. You get a report of your top emitters and a CSV for your spreadsheet ([accepted columns](./examples/README.md)). |
+| **A developer** | `npm run cli -- send-webhook` sends a correctly signed Shopify order to a running server; `npm run cli -- verify <url>` runs 17 live security and correctness checks. |
+
+**Tested against Shopify itself:** a webhook sent by Shopify from a development store (`orders/create`, HMAC-signed by Shopify) was received, normalized and audited by the live demo. Because Shopify's sample order has no product weights and a fictional city, EcoTrace flagged both as estimates instead of presenting a guess as fact.
 
 ---
 

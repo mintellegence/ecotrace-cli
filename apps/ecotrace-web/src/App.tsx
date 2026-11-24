@@ -3,7 +3,8 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { BarChart3, BookOpen, Bot, Layers, ShieldCheck, Terminal as TerminalIcon } from 'lucide-react';
+import { BarChart3, BookOpen, Bot, LayoutDashboard, Layers, ShieldCheck, Terminal as TerminalIcon } from 'lucide-react';
+import { OverviewView } from './components/OverviewView.tsx';
 import { EcoTraceLogo } from './components/EcoTraceLogo.tsx';
 import { TerminalEmulator } from './components/TerminalEmulator.tsx';
 import { WebhookWorkbench } from './components/WebhookWorkbench.tsx';
@@ -14,7 +15,7 @@ import { RepoArchitectureView } from './components/RepoArchitectureView.tsx';
 import { apiFetch, clearToken, getToken, setToken } from './api.ts';
 import { AuditReportSummary, EmissionAuditResult } from '../../../foundation/types/index.ts';
 
-type Tab = 'terminal' | 'webhook' | 'dashboard' | 'kiro' | 'arch' | 'docs';
+type Tab = 'overview' | 'terminal' | 'webhook' | 'dashboard' | 'kiro' | 'arch' | 'docs';
 
 interface ServerMeta {
   demoMode: boolean;
@@ -25,6 +26,7 @@ interface ServerMeta {
 }
 
 const TABS: Array<{ id: Tab; label: string; short: string; icon: React.ComponentType<{ className?: string }> }> = [
+  { id: 'overview', label: 'Overview', short: 'Overview', icon: LayoutDashboard },
   { id: 'terminal', label: 'CLI Terminal', short: 'Terminal', icon: TerminalIcon },
   { id: 'webhook', label: 'Webhook Normalizer', short: 'Webhooks', icon: Layers },
   { id: 'dashboard', label: 'Carbon Ledger', short: 'Ledger', icon: BarChart3 },
@@ -36,7 +38,7 @@ const TABS: Array<{ id: Tab; label: string; short: string; icon: React.Component
 const POLL_MS = 5000;
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('terminal');
+  const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [summary, setSummary] = useState<AuditReportSummary | null>(null);
   const [audits, setAudits] = useState<EmissionAuditResult[]>([]);
   const [meta, setMeta] = useState<ServerMeta | null>(null);
@@ -201,6 +203,9 @@ export default function App() {
           </form>
         ) : (
           <>
+            {activeTab === 'overview' && (
+              <OverviewView summary={summary} demoMode={Boolean(meta?.demoMode)} onNavigate={setActiveTab} />
+            )}
             {activeTab === 'terminal' && (
               <div className="h-[calc(100vh-200px)] min-h-[550px]">
                 <TerminalEmulator onOrderAudited={fetchLedgerData} />
